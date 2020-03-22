@@ -13,4 +13,8 @@ export class AngajatService {
         return this.httpClient.get(this.baseUrl + 'employee/' + angajatId +
             '?projection=employeeDetails');
     }
+
+    getAngajatiDepartamentId(departId){
+        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByDepartment_Id?id=' + departId);
+    }
 }

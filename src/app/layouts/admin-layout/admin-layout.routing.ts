@@ -64,6 +64,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notifications',  component: NotificationsComponent },
     {path: 'plan-cladire', component: PlanCladireComponent},
     { path: 'angajati', component: AngajatiComponent},
+    { path: 'angajati/departament/:departament', component: AngajatiComponent},
     { path: 'angajat/:id',  component: DetaliiAngajatComponent },
     { path: 'departamente',  component: DepartamenteComponent },
     { path: 'departament/:id',  component: DepartDetaliiComponent },

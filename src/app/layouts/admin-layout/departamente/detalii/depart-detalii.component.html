@@ -1,7 +1,34 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row">
-            <h1>test detalii depart</h1>
+        <a class="linkBack" [routerLink]="['/departamente']"><i class="fa fa-arrow-circle-left"></i> Back</a></div>
+    <div class="card">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">{{departamentDetalii?.name}}</h4>
+            <p class="card-category">Id: {{departamentDetalii?.id}}</p>
+        </div>
+        <div class="card-body">
+            <div id="typography">
+                <div class="row">
+                    <div class="col-md-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Code: </div>
+                    <div class="col-md-6 labelValori">{{departamentDetalii?.code}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 labelDate"><i class="fa fa-address-card extra-space"></i> Denumire: </div>
+                    <div class="col-md-6 labelValori">{{departamentDetalii?.name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 labelDate"><i class="fa fa-male extra-space"></i> Nr angajati: </div>
+                    <div class="col-md-2 labelValori">{{departamentDetalii?.employees?.length}}</div>
+                        <div class="col-md-4 btnAngajati">
+                     <button type="submit" class="btn btn-outline-warning" (click)="vizualizareAngajati()">Vizualizare angajati</button>
+                    </div>
+                </div>
+                <div class="row btnHarta">
+                    <button type="submit" class="btn btn-outline-danger pull-right"><i class="fa fa-map-marker extra-space"></i> Locatie</button>
+                     </div>
+            </div>
         </div>
     </div>
 </div>

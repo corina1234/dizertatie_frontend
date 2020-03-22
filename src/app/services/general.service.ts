@@ -16,4 +16,8 @@ export class GeneralService {
     getResourceByUrl(resourceUrl){
         return this.httpClient.get(resourceUrl);
     }
+
+    getResourceByName(resource, nume){
+        return this.httpClient.get(this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume);
+    }
 }
