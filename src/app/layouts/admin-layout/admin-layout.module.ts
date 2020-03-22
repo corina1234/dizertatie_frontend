@@ -7,10 +7,8 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import {
   MatButtonModule,
@@ -21,6 +19,19 @@ import {
   MatSelectModule
 } from '@angular/material';
 import {PlanCladireComponent} from "../../plan-cladire/plan-cladire.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {PlanParterComponent} from "../../plan-cladire/parter/plan-parter.component";
+import {Etaj1Component} from "../../plan-cladire/etaj1/etaj-1.component";
+import {Etaj2Component} from "../../plan-cladire/etaj2/etaj-2.component";
+import {AppModule} from "../../app.module";
+import {MeetingRoomService} from "../../services/meetingRoom.service";
+import {AngajatiComponent} from "./angajati/listing/angajati.component";
+import {DetaliiAngajatComponent} from "./angajati/detalii/detalii-angajat.component";
+import {DepartamenteComponent} from "./departamente/listing/departamente.component";
+import {DepartDetaliiComponent} from "./departamente/detalii/depart-detalii.component";
+import {BookMeetingRoomComponent} from "./bookMeetingRoom/book-meeting-room.component";
+import {GeneralService} from "../../services/general.service";
+import {AngajatService} from "../../services/angajat.service";
 @NgModule({
   imports: [
     CommonModule,
@@ -33,17 +44,28 @@ import {PlanCladireComponent} from "../../plan-cladire/plan-cladire.component";
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatButtonToggleModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
     TypographyComponent,
-    IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent,
-    PlanCladireComponent
+    PlanCladireComponent,
+      PlanParterComponent,
+      Etaj1Component,
+      Etaj2Component,
+    AngajatiComponent,
+      DetaliiAngajatComponent,
+      DepartamenteComponent,
+      DepartDetaliiComponent,
+      BookMeetingRoomComponent
+  ], providers: [
+      MeetingRoomService,
+      GeneralService,
+      AngajatService
   ]
 })
 

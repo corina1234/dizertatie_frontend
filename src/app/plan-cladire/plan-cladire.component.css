@@ -1,0 +1,19 @@
+.details-amenities {
+    display: none;
+    position: absolute;
+    font-size: 1em;
+    background-color: white;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+    border-radius: 2px;
+}
+
+.selectEtaj {
+    margin-bottom: 10px;
+}
+
+svg rect:hover  {
+    fill: lightgrey;
+    fill-opacity: 100%;
+}

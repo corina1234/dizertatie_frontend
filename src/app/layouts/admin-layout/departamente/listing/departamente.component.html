@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-10">
+                <form class="navbar-form">
+                    <div class="input-group no-border">
+                        <input type="text" value="" class="form-control" placeholder="Search...">
+                        <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-header card-header-warning">
+                    <h4 class="card-title">Departamente</h4>
+                    <p class="card-category">Detalii legate de departamentele companiei</p>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-warning">
+                        <th>ID</th>
+                        <th>Nume</th>
+                        </thead>
+                        <tbody  *ngFor="let departament of departamente">
+                        <tr (click)="vizualizareDetalii(departament.id)">
+                            <td>{{departament?.id}}</td>
+                            <td>{{departament?.name}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

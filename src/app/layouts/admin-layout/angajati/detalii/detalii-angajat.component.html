@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <a class="linkBack" [routerLink]="['/angajati']"><i class="fa fa-arrow-circle-left"></i> Back</a></div>
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">{{angajatDetalii?.name}}</h4>
+                <p class="card-category">Id: {{angajatDetalii?.id}}</p>
+                </div>
+            <div class="card-body">
+                <div id="typography">
+
+                    <div class="row">
+                        <div class="col-md-6 labelDate"><i class="fa fa-address-card extra-space"></i> Nume: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 labelDate"><i class="fa fa-envelope-o extra-space"></i> Email: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.email}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 labelDate"><i class="fa fa-phone extra-space"></i> Telefon: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.phoneNumber}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 labelDate"><i class="fa fa-calendar extra-space"></i> Data Angajarii: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.dateOfEmployment | date :'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 labelDate"><i class="fa fa-tasks extra-space"></i> Functie: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.job?.name}}
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="angajatDetalii?.department">
+                        <div class="col-md-6 labelDate"><i class="fa fa-credit-card extra-space"></i> Departament: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.department?.name}}
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="angajatDetalii?.manager">
+                        <div class="col-md-6 labelDate"><i class="fa fa-group extra-space"></i> Manager: </div>
+                        <div class="col-md-6 labelValori">{{angajatDetalii?.manager?.name}}
+                        </div>
+                    </div>
+                    <div class="row btnHarta">
+                        <button type="submit" class="btn btn-danger pull-right"><i class="fa fa-map-marker extra-space"></i> Birou</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="card" *ngIf="angajatDetalii?.employees.length > 0">
+        <div class="card-header card-header-warning">
+            <h4 class="card-title">Subalterni</h4>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead class="text-warning">
+                <th>ID</th>
+                <th>Nume</th>
+                <th>Email</th>
+                <th>Data angajarii</th>
+                </thead>
+                <tbody  *ngFor="let angajat of angajatDetalii?.employees">
+                <tr>
+                    <td>{{angajat?.id}}</td>
+                    <td>{{angajat?.name}}</td>
+                    <td>{{angajat?.email}}</td>
+                    <td>{{angajat?.dateOfEmployment | date :'yyyy/MM/dd'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
