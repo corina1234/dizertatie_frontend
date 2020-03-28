@@ -2,11 +2,10 @@
     display: none;
     position: absolute;
     font-size: 1em;
-    background-color: white;
-    border-style: solid;
-    border-color: gray;
-    border-width: 1px;
-    border-radius: 2px;
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px;
 }
 
 .selectEtaj {

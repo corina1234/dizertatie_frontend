@@ -31,5 +31,11 @@ export class DepartDetaliiComponent implements OnInit {
         this.router.navigate(['/angajati/departament/', this.departamentId]);
     }
 
+    vizualizareHarta(){
+        let etaj = this.departamentDetalii.officesRoom.floor.id;
+        let camera = this.departamentDetalii.officesRoom.id
+        this.router.navigate(['/plan-cladire/nivel/', etaj, camera]);
+    }
+
 
 }

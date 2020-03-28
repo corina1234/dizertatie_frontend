@@ -33,6 +33,7 @@ import {BookMeetingRoomComponent} from "./bookMeetingRoom/book-meeting-room.comp
 import {GeneralService} from "../../services/general.service";
 import {AngajatService} from "../../services/angajat.service";
 import {DepartmentService} from "../../services/department.service";
+import {OfficesRoomService} from "../../services/officesRoom.service";
 @NgModule({
   imports: [
     CommonModule,
@@ -67,7 +68,8 @@ import {DepartmentService} from "../../services/department.service";
       MeetingRoomService,
       GeneralService,
       AngajatService,
-      DepartmentService
+      DepartmentService,
+      OfficesRoomService
   ]
 })
 

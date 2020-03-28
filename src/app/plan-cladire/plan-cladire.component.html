@@ -7,9 +7,9 @@
             <div class="card-body">
                 <div class="selectEtaj">
                     <mat-button-toggle-group>
-                        <mat-button-toggle #parter [checked]="true">Parter</mat-button-toggle>
-                        <mat-button-toggle #etaj1>Etajul 1</mat-button-toggle>
-                        <mat-button-toggle #etaj2>Etajul 2</mat-button-toggle>
+                        <mat-button-toggle #parter [checked]="etajChecked[0]">Parter</mat-button-toggle>
+                        <mat-button-toggle #etaj1 [checked]="etajChecked[1]">Etajul 1</mat-button-toggle>
+                        <mat-button-toggle #etaj2 [checked]="etajChecked[2]">Etajul 2</mat-button-toggle>
                     </mat-button-toggle-group>
                 </div>
                 <div id="planCladire">
@@ -18,8 +18,7 @@
                         <rect x="0" y="0" width="1050" height="500" fill-opacity="0" stroke="black" stroke-width="3"/>
  <!------------------------------------------------->
                         <!-- 1. Scari stg -->
-                        <rect x="36%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black">
-                            <title>Scari</title>
+                        <rect x="36%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Scari')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <!-- Linie mijloc -->
                         <line x1="43%" y1="0" x2="43%" y2="17%" stroke="black" />
@@ -38,8 +37,7 @@
 
 <!------------------------------------------------->
                         <!-- 2. Lift -->
-                        <rect x="50%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black">
-                            <title>Lift</title>
+                        <rect x="50%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Lift')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <!-- Linii mijloc -->
                         <line x1="50%" y1="15%" x2="64%" y2="15%" stroke="black" />
@@ -47,8 +45,7 @@
 
 <!------------------------------------------------->
                         <!-- 3. Scari dr -->
-                        <rect x="64%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black">
-                            <title>Scari</title>
+                        <rect x="64%" y="0" width="14%" height="17%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Scari')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <!-- Linie mijloc -->
                         <line x1="71%" y1="0" x2="71%" y2="17%" stroke="black" />
@@ -67,8 +64,7 @@
 
 <!------------------------------------------------->
                         <!-- 4. Bai -->
-                        <rect x="78%" y="0" width="22%" height="25%" fill-opacity="0" stroke="black">
-                            <title>Baie femei</title>
+                        <rect x="78%" y="0" width="22%" height="25%" fill-opacity="0" stroke="black" (mouseover)="showTooltip($event, 'Baie femei')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
                             <path d="M719 0 729 0A90 90 0 0 1 719 15Z" fill-opacity="0" stroke="black"/>
@@ -92,8 +88,7 @@
                         </g>
 
                         <!-- 4. Bai -->
-                        <rect x="78%" y="25%" width="22%" height="25%" fill-opacity="0" stroke="black">
-                            <title>Baie barbati</title>
+                        <rect x="78%" y="25%" width="22%" height="25%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Baie barbati')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
                             <path d="M719 130 729 130A90 90 0 0 1 719 145Z" fill-opacity="0" stroke="black"/>
@@ -117,8 +112,7 @@
                         <rect x="78%" y="31%" width="0.5%" height="0.5%" fill-opacity="0" stroke="black"/>
 
                         <!-- 5. Bucatarie -->
-                        <rect x="78%" y="50%" width="22%" height="50%" fill-opacity="0" stroke="black">
-                            <title>Bucatarie</title>
+                        <rect x="78%" y="50%" width="22%" height="50%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Bucatarie')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
                             <path d="M719 160 729 160A90 90 0 0 1 719 175Z" fill-opacity="0" stroke="black"/>
@@ -141,9 +135,9 @@
                         <circle cx="95%" cy="75%" r="10" fill-opacity="0" stroke="black"/>
                         <circle cx="98%" cy="85%" r="10" fill-opacity="0" stroke="black"/>
 
-                        <g parter-component *ngIf="parter.checked"></g>
-                        <g etaj-1-component *ngIf="etaj1.checked"></g>
-                        <g etaj-2-component *ngIf="etaj2.checked"></g>
+                        <g parter-component *ngIf="parter.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+                        <g etaj-1-component *ngIf="etaj1.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+                        <g etaj-2-component *ngIf="etaj2.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
                     </svg>
                     </div>
                 </div>
