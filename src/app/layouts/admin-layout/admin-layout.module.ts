@@ -34,6 +34,9 @@ import {GeneralService} from "../../services/general.service";
 import {AngajatService} from "../../services/angajat.service";
 import {DepartmentService} from "../../services/department.service";
 import {OfficesRoomService} from "../../services/officesRoom.service";
+import {OfficeService} from "../../services/office.service";
+import {DetailsMeetingRoomComponent} from "./bookMeetingRoom/detailsMeetingRooms/details-meeting-room.component";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 @NgModule({
   imports: [
     CommonModule,
@@ -46,7 +49,8 @@ import {OfficesRoomService} from "../../services/officesRoom.service";
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+      MatSnackBarModule
   ],
   declarations: [
     DashboardComponent,
@@ -62,10 +66,12 @@ import {OfficesRoomService} from "../../services/officesRoom.service";
     AngajatiComponent,
       DetaliiAngajatComponent,
       DepartamenteComponent,
+      DetailsMeetingRoomComponent,
       DepartDetaliiComponent,
       BookMeetingRoomComponent
   ], providers: [
       MeetingRoomService,
+      OfficeService,
       GeneralService,
       AngajatService,
       DepartmentService,

@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-10">
+                <form class="navbar-form">
+<!--                    <div class="input-group no-border">-->
+<!--                        <input type="text" value="" class="form-control" placeholder="Cautare nume departament..." #departCautat>-->
+<!--                        <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="searchDepartament(departCautat.value)">-->
+<!--                            <i class="material-icons">search</i>-->
+<!--                            <div class="ripple-container"></div>-->
+<!--                        </button>-->
+<!--                    </div>-->
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title">Sali sedinte</h4>
+                    <p class="card-category">Detalii legate de disponibilitatea salilor de sedinta</p>
+                </div>
+                <div class="card-body table-responsive" *ngIf="meetingRooms.length > 0">
+                    <table class="table table-hover">
+                        <thead class="text-warning">
+                        <th>Nume</th>
+                        <th>Disponibilitate</th>
+                        <th>Ocupata pana la</th>
+                        <th>Ocupata de</th>
+                        <th>Subiect</th>
+                        </thead>
+                        <tbody  *ngFor="let meeting of meetingRooms">
+                        <tr>
+                            <td>{{meeting?.name}}</td>
+                            <td>{{meeting?.disponibilitate}}</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body table-responsive" *ngIf="meetingRooms.length == 0"> Nici un rezultat
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

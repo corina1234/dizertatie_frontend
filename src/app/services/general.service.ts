@@ -20,4 +20,9 @@ export class GeneralService {
     getResourceByName(resource, nume){
         return this.httpClient.get(this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume);
     }
+
+    createResource(formValues, resource: string) {
+        return this.httpClient.post(this.baseUrl + resource,
+            formValues);
+    }
 }
