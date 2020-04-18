@@ -1,50 +1,35 @@
 <svg>
-    <!-- 1. OS 1 -->
-    <rect  x="0" y="17%" width="36%" height="83%" fill-opacity="0" stroke="black"  [ngStyle]="isOpenSpaceSelectedStyle(officeRooms[0]?.id, camera)" (mouseover)="showTooltip($event, officeRooms[0])" (mouseleave)="hideTooltip($event)"/>
-    <g transform="translate(100,100)">
-        <path d="M278 20 268 20A70 70 0 0 1 278 5Z" fill-opacity="0" stroke="black"/>
-    </g>
+    <ng-container *ngFor="let officeRoom of officeRooms">
+        <rect [attr.x]="officeRoom?.x" [attr.y]="officeRoom?.y" [attr.width]="officeRoom?.width" [attr.height]="officeRoom?.height" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(officeRoom?.id, camera)" (mouseover)="showTooltip($event, officeRoom)" (mouseleave)="hideTooltip($event)"/>
+        <ng-container *ngFor="let office of officeRoom?.offices">
+            <rect [attr.x]="office.x" [attr.y]="office.y" [attr.width]="office.width"  [attr.height]="office.height" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(office?.id, officeAngajat)" (mouseover)="showTooltipOffice($event, office, officeRoom?.department?.name)" (mouseleave)="hideTooltip($event)"/>
+        </ng-container>
+    </ng-container>
 
-    <!-- 2. OS 2 -->
-    <rect  x=36% y="37%" width="42%" height="46%" fill-opacity="0" stroke="black"  [ngStyle]="isOpenSpaceSelectedStyle(officeRooms[1]?.id, camera)" (mouseover)="showTooltip($event, officeRooms[1])" (mouseleave)="hideTooltip($event)"/>
-    <g transform="translate(100,100)">
-        <path d="M300 85 320 85A90 90 0 0 1 300 95Z" fill-opacity="0" stroke="black"/>
-    </g>
+    <ng-container *ngFor="let meetingRoom of meetingRooms">
+        <rect [attr.x]="meetingRoom?.x" [attr.y]="meetingRoom?.y" [attr.width]="meetingRoom?.width" [attr.height]="meetingRoom?.height" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(meetingRoom?.id, salaSedinte)" (mouseover)="showTootltipMR($event, meetingRoom)" (mouseleave)="hideTooltip($event)"/>
+    </ng-container>
 
-    <!-- 3. MR 1 -->
-    <rect  x="0" y="0" width="18%" height="17%" fill-opacity="0" stroke="black">
-    </rect>
+   <g transform="translate(100,100)">
+        <path d="M278 30 258 30A70 70 0 0 1 278 5Z" fill-opacity="0" stroke="black"/>
+    </g>
+    <g transform="translate(100,100)">
+        <path d="M300 85 320 85A90 90 0 0 1 300 100Z" fill-opacity="0" stroke="black"/>
+    </g>
     <g transform="translate(100,100)">
         <path d="M70 -15 50 -15A70 70 0 0 1 70 -25Z" fill-opacity="0" stroke="black"/>
     </g>
-
-    <!-- 4. MR 2 -->
-    <rect  x="18%" y="0" width="18%" height="17%" fill-opacity="0" stroke="black"/>
     <g transform="translate(100,100)">
         <path d="M250 -15 230 -15A70 70 0 0 1 250 -25Z" fill-opacity="0" stroke="black"/>
     </g>
-
-    <!-- 5. MR 3 -->
-    <rect  x="36%" y="83%" width="14%" height="17%" fill-opacity="0" stroke="black"/>
     <g transform="translate(100,100)">
         <path d="M300 315 320 315A90 90 0 0 1 300 325Z" fill-opacity="0" stroke="black"/>
     </g>
-
-    <!-- 6. MR 4 -->
-    <rect  x="50%" y="83%" width="14%" height="17%" fill-opacity="0" stroke="black"/>
     <g transform="translate(100,100)">
         <path d="M450 315 470 315A90 90 0 0 1 450 325Z" fill-opacity="0" stroke="black"/>
     </g>
-
-    <!-- 7. MR 5 -->
-    <rect  x="64%" y="83%" width="14%" height="17%" fill-opacity="0" stroke="black"/>
     <g transform="translate(100,100)">
         <path d="M600 315 620 315A90 90 0 0 1 600 325Z" fill-opacity="0" stroke="black"/>
     </g>
 
-    <!-- 8. Servere -->
-    <rect  x="0" y="83%" width="13%" height="17%" fill-opacity="0" stroke="black" (mouseover)="showTooltipSimple($event, 'Servere')"/>
-    <g transform="translate(100,100)">
-        <path d="M-80 315 -60 315A90 90 0 0 1 -80 325Z" fill-opacity="0" stroke="black"/>
-    </g>
 </svg>

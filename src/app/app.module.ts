@@ -9,39 +9,48 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {MeetingRoomService} from "./services/meetingRoom.service";
 import {HttpClientModule} from "@angular/common/http";
-import {AngajatiComponent} from "./layouts/admin-layout/angajati/listing/angajati.component";
+import {ToastrModule} from "ngx-toastr";
+import {LoginComponent} from "./login/login.component";
+import {AuthenticationService} from "./services/authentication.service";
+import {AuthGuardService} from "./services/authguard.service";
+import {LogoutComponent} from "./logout/logout.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ComponentsModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
-  ],
+    imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        RouterModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+        MatButtonToggleModule
+
+    ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   providers: [
+      AuthenticationService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

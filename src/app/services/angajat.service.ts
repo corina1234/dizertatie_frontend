@@ -14,7 +14,19 @@ export class AngajatService {
             '?projection=employeeDetails');
     }
 
-    getAngajatiDepartamentId(departId){
-        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByDepartment_Id?id=' + departId);
+    getAngajatiDepartamentId(departId, i){
+        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByDepartment_Id?id=' + departId + '&page= ' + i + '&projection=employeeList');
+    }
+
+    searchNameAngajatiDepartamentId(departId, name, i){
+        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByNameContainingAndDepartment_Id?name=' + name +'&id=' + departId + '&page=' + i + '&projection=employeeList');
+    }
+
+    getAngajatByEmail(email, projection?){
+        let url = this.baseUrl + 'employee/search/findByEmail?email=' + email;
+        if(projection){
+            return this.httpClient.get(url + '&projection=' + projection);
+        }
+        return this.httpClient.get(url);
     }
 }

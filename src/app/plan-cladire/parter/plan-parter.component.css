@@ -1,4 +1,4 @@
 svg rect:hover  {
-    fill: lightgrey;
-    fill-opacity: 100%;
+    fill: #FFF0F5;
+    fill-opacity: 50%;
 }

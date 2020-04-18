@@ -3,27 +3,38 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MeetingRoomService} from "../../../services/meetingRoom.service";
 import {GeneralService} from "../../../services/general.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+import {BookingService} from "../../../services/booking.service";
+import {ToastrService} from "ngx-toastr";
+import {AngajatService} from "../../../services/angajat.service";
 
 @Component({
-    templateUrl: './book-meeting-room.component.html'
+    templateUrl: './book-meeting-room.component.html',
+    styleUrls: ['./book-meeting-room.component.css']
 })
 
 export class BookMeetingRoomComponent implements OnInit {
-    resource = "booking";
-    baseUrlEmployee = "http://localhost:8080/employee/";
-    //TODO delete hardcoded
-    currentUserId = 4;
+    resource = "bookings/create";
+    roomResource = "meetingRoom";
+    roomProjection = "meetingRoomDetails";
+    currentUserId;
     bookForm: FormGroup;
     meetingRooms = [];
+    selectedMeetingRoom;
     private meetingRoom: FormControl;
     private subject: FormControl;
     private bookedFrom: FormControl;
     private bookedUntil: FormControl;
 
-    constructor(private meetingRoomService: MeetingRoomService, private generalService: GeneralService, private _snackBar: MatSnackBar) {}
+    private disponibilitateSelectata;
+    private bookings:any;
+
+    constructor(private generalService: GeneralService, private bookingService: BookingService,
+                private angajatService: AngajatService,
+                private toastr: ToastrService, private router: Router) {}
 
     ngOnInit(): void {
-        this.meetingRoom = new FormControl('', Validators.required);
+        this.meetingRoom = new FormControl('0', Validators.required);
         this.subject = new FormControl();
         this.bookedFrom = new FormControl('', Validators.required);
         this.bookedUntil = new FormControl('', Validators.required);
@@ -34,22 +45,45 @@ export class BookMeetingRoomComponent implements OnInit {
             bookedUntil: this.bookedUntil
         });
 
-        this.meetingRoomService.getAvailableMeetingRooms().subscribe(data => this.meetingRooms = (<any>data)._embedded.meetingRooms);
+        this.generalService.getAllResources(this.roomResource).subscribe(data =>
+        {
+            this.meetingRooms = (<any>data)._embedded.meetingRooms;
+        });
+        this.selectedMeetingRoom = null;
+        this.disponibilitateSelectata = false;
+
+        this.angajatService.getAngajatByEmail( sessionStorage.getItem('username')).subscribe((data) => this.currentUserId = (<any>data).id);
     }
 
-    vizualizareMeetingRooms(){
+    verificaRezervare(formValues){
+        this.bookings = [];
+        if(this.validareFielduri(formValues)){
+            let bookedFrom = formValues.bookedFrom.replace("T", "%20");
+            let bookedUntil = formValues.bookedUntil.replace("T", "%20");
+            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil, this.selectedMeetingRoom.id).subscribe(data => {
+                this.disponibilitateSelectata = true;
+                this.bookings = data;
 
+            });
+        }
     }
 
     salvareRezervare(formValues){
         if(this.validareFielduri(formValues)){
-            formValues.employee = this.baseUrlEmployee + this.currentUserId;
-            this.generalService.createResource(formValues, this.resource).subscribe(data => {
-                this._snackBar.open("Rezervarea a fost salvata", null,{
-                    duration: 1000,
-                });
-                this.ngOnInit();
+            formValues.employee = {id: this.currentUserId};
+            let bookedFrom = formValues.bookedFrom.replace("T", "%20");
+            let bookedUntil = formValues.bookedUntil.replace("T", "%20");
+            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil, this.selectedMeetingRoom.id).subscribe(data => {
+                if ((<any>data).length > 0) {
+                    this.toastr.error('Camera e ocupata!');
+                } else {
+                    formValues.meetingRoom = {id: this.selectedMeetingRoom.id};
+                    this.generalService.createResource(formValues, this.resource).subscribe(data => {
+                        this.toastr.success('Rezervarea a fost salvata!');
+                        this.ngOnInit();
 
+                    });
+               }
             });
         }
     }
@@ -85,5 +119,17 @@ export class BookMeetingRoomComponent implements OnInit {
             min = '0' + min;
         }
         return today.getFullYear() + "-" + mm + "-" + dd + "T" + hh + ":" + min;
+    }
+
+    vizualizareHarta(){
+        let etaj = this.selectedMeetingRoom.floor.id;
+        let salaSedinte = this.selectedMeetingRoom.id;
+        this.router.navigate(['/plan-cladire/sedinta/', etaj, salaSedinte]);
+    }
+
+    changeSelectedRoom(url){
+        this.generalService.getResourceByIdAndProjection(url, this.roomProjection).subscribe((data) =>{
+           this.selectedMeetingRoom = data;
+        });
     }
 }

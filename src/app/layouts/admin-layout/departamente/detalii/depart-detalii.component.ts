@@ -34,7 +34,7 @@ export class DepartDetaliiComponent implements OnInit {
     vizualizareHarta(){
         let etaj = this.departamentDetalii.officesRoom.floor.id;
         let camera = this.departamentDetalii.officesRoom.id
-        this.router.navigate(['/plan-cladire/nivel/', etaj, camera]);
+        this.router.navigate(['/plan-cladire/departament/', etaj, camera]);
     }
 
 

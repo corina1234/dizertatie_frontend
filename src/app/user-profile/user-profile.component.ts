@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AngajatService} from "../services/angajat.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {OfficeService} from "../services/office.service";
+import {GeneralService} from "../services/general.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-user-profile',
@@ -9,42 +11,50 @@ import {OfficeService} from "../services/office.service";
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  //TODO delete hardcoded id + salvare modificari
   baseUrl = "http://localhost:8080/";
-  angajatId = 4;
+  angajatId;
   angajat;
   offices = [];
   employeeForm: FormGroup;
   private email: FormControl;
-  private telefon: FormControl;
-  private birou: FormControl;
+  private phoneNumber: FormControl;
+  private office: FormControl;
 
-  constructor(private angajatService: AngajatService, private officeService: OfficeService) { }
+  constructor(private angajatService: AngajatService, private officeService: OfficeService,
+              private generalService: GeneralService, private toastr: ToastrService) { }
 
   ngOnInit() {
 
     this.email = new FormControl('', [Validators.email, Validators.required]);
-    this.telefon = new FormControl('', Validators.required);
-    this.birou = new FormControl('', Validators.required);
+    this.phoneNumber = new FormControl('', Validators.required);
+    this.office = new FormControl('', Validators.required);
     this.employeeForm = new FormGroup({
       email: this.email,
-      telefon: this.telefon,
-      birou: this.birou
+      phoneNumber: this.phoneNumber,
+      office: this.office
     });
 
-    this.angajatService.getAngajatDetailedById(this.angajatId).subscribe(data => {
+    this.angajatService.getAngajatByEmail( sessionStorage.getItem('username'), "employeeDetails").subscribe((data) => {
+      this.angajatId = (<any>data).id;
       this.angajat = data;
       this.email.setValue(this.angajat.email);
-      this.telefon.setValue(this.angajat.phoneNumber);
+      this.phoneNumber.setValue(this.angajat.phoneNumber);
       if (this.angajat.office) {
-        this.birou.setValue(this.baseUrl + "office/" + this.angajat.office.id);
+        this.office.setValue(this.baseUrl + "office/" + this.angajat.office.id);
       }
       if(this.angajat.department && this.angajat.department.officesRoom){
         this.officeService.getAvailableOfficesForOfficeRoom(this.angajat.department.officesRoom.id, this.angajat.id).subscribe(offices =>
-        this.offices = (<any>offices)._embedded.offices);
+            this.offices = (<any>offices)._embedded.offices);
 
       }
     });
+
   }
 
+  updateEmployee(employeeForm){
+    this.generalService.updateResource(employeeForm, this.angajatId, "employee").subscribe(() => {
+      this.toastr.success('Datele au fost modificate!');
+      this.ngOnInit();
+    });
+  }
 }

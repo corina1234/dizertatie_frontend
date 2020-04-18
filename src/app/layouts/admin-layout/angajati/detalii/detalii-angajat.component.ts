@@ -26,6 +26,11 @@ export class DetaliiAngajatComponent implements OnInit {
         });
     }
 
+    vizualizareHarta(){
+        let etaj = this.angajatDetalii.department.officesRoom.floor.id;
+        let office = this.angajatDetalii.office.id
+        this.router.navigate(['/plan-cladire/angajat/', etaj, office]);
+    }
 
 
 }

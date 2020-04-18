@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from "@angular/core";
 import {OfficesRoomService} from "../../services/officesRoom.service";
-import {getDataHtml, isOpenSpaceSelectedStyle} from "../utils";
+import {getDataHtml, getOfficeInfo, isOpenSpaceSelectedStyle} from "../utils";
 
 // @ts-ignore
 @Component({
@@ -11,6 +11,7 @@ import {getDataHtml, isOpenSpaceSelectedStyle} from "../utils";
 
 export class PlanParterComponent implements OnInit{
     @Input() camera;
+    @Input() officeAngajat;
     @Output() showDetails = new EventEmitter();
     @Output() hideDetails = new EventEmitter();
     isOpenSpaceSelectedStyle = isOpenSpaceSelectedStyle;
@@ -22,6 +23,7 @@ export class PlanParterComponent implements OnInit{
     ngOnInit(): void {
         this.officesRoomService.getOfficesRoomsByFloorId(this.floorId).subscribe((data) => {
             this.officeRooms = (<any>data)._embedded.officesRooms;
+            console.log(this.officeRooms)
             this.officeRooms.forEach((office) => {
                 if(office.id == this.camera){
                     let coordinates = office.coordinates.split(",");
@@ -48,6 +50,12 @@ export class PlanParterComponent implements OnInit{
         this.hideDetails.emit($event);
     }
 
+    showTooltipOffice($event, officeData, parentName){
+        if(officeData){
+            let dataHtml = getOfficeInfo(officeData, parentName);
+            this.showDetails.emit({event: $event, data: dataHtml});
+        }
+    }
 }
 
 

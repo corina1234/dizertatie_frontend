@@ -36,8 +36,8 @@
                               </div>
                               <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
-                                      <input matInput type="text" formControlName="telefon">
-                                      <mat-error *ngIf="telefon.invalid">Telefon invalid</mat-error>
+                                      <input matInput type="text" formControlName="phoneNumber">
+                                      <mat-error *ngIf="phoneNumber.invalid">Telefon invalid</mat-error>
                                   </mat-form-field>
                               </div>
                           </div>
@@ -86,12 +86,12 @@
                                   <label>Birou</label>
                               </div>
                               <div class="col-md-3">
-                                      <select matNativeControl name="select1" formControlName="birou" id="birou">
+                                      <select matNativeControl name="select1" formControlName="office" id="office">
                                           <option  *ngFor="let office of offices" [value]="office._links.self.href" [selected]="">{{office.name}}</option>
                                       </select>
                               </div>
                           </div>
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="employeeForm.invalid" >Salvare modificari</button>
+                          <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="employeeForm.invalid" (click)="updateEmployee(employeeForm.value)">Salvare modificari</button>
                           <div class="clearfix"></div>
                       </form>
                   </div>

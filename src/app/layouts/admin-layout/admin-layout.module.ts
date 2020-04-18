@@ -5,10 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
 
 import {
   MatButtonModule,
@@ -23,7 +19,6 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {PlanParterComponent} from "../../plan-cladire/parter/plan-parter.component";
 import {Etaj1Component} from "../../plan-cladire/etaj1/etaj-1.component";
 import {Etaj2Component} from "../../plan-cladire/etaj2/etaj-2.component";
-import {AppModule} from "../../app.module";
 import {MeetingRoomService} from "../../services/meetingRoom.service";
 import {AngajatiComponent} from "./angajati/listing/angajati.component";
 import {DetaliiAngajatComponent} from "./angajati/detalii/detalii-angajat.component";
@@ -35,8 +30,8 @@ import {AngajatService} from "../../services/angajat.service";
 import {DepartmentService} from "../../services/department.service";
 import {OfficesRoomService} from "../../services/officesRoom.service";
 import {OfficeService} from "../../services/office.service";
-import {DetailsMeetingRoomComponent} from "./bookMeetingRoom/detailsMeetingRooms/details-meeting-room.component";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {BookingService} from "../../services/booking.service";
+import {AuthenticationService} from "../../services/authentication.service";
 @NgModule({
   imports: [
     CommonModule,
@@ -49,16 +44,11 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatButtonToggleModule,
-      MatSnackBarModule
+    MatButtonToggleModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
-    TableListComponent,
-    TypographyComponent,
-    MapsComponent,
-    NotificationsComponent,
     PlanCladireComponent,
       PlanParterComponent,
       Etaj1Component,
@@ -66,7 +56,6 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     AngajatiComponent,
       DetaliiAngajatComponent,
       DepartamenteComponent,
-      DetailsMeetingRoomComponent,
       DepartDetaliiComponent,
       BookMeetingRoomComponent
   ], providers: [
@@ -75,7 +64,8 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
       GeneralService,
       AngajatService,
       DepartmentService,
-      OfficesRoomService
+      OfficesRoomService,
+      BookingService
   ]
 })
 

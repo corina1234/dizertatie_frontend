@@ -9,20 +9,57 @@ export class GeneralService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getAllResources(resourceName){
-        return this.httpClient.get(this.baseUrl + resourceName);
+    getAllResources(resourceName, projection?){
+        let url = this.baseUrl + resourceName;
+        if(projection){
+            return this.httpClient.get(url + '?projection=' + projection);
+        } else {
+            return this.httpClient.get(url);
+        }
+    }
+
+    getAllResourcesByPage(resourceName, i,  projection?){
+        let url = this.baseUrl + resourceName + '?page=' + i;
+        if(projection){
+            return this.httpClient.get(url + '&projection=' + projection);
+        } else {
+            return this.httpClient.get(url);
+        }
+    }
+
+    getResourceByIdAndProjection(url, projectionName){
+        return this.httpClient.get(url + "?projection=" + projectionName);
     }
 
     getResourceByUrl(resourceUrl){
         return this.httpClient.get(resourceUrl);
     }
 
-    getResourceByName(resource, nume){
-        return this.httpClient.get(this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume);
+    getResourceByName(resource, nume, projection?){
+        let url = this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume;
+        if(projection){
+            return this.httpClient.get(url + '&projection=' + projection);
+        } else {
+            return this.httpClient.get(url);
+        }
+    }
+
+    getResourceByNameAndPage(resource, nume, i, projection?){
+        let url = this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume + '&page=' + i;
+        if(projection){
+            return this.httpClient.get(url + '&projection=' + projection);
+        } else {
+            return this.httpClient.get(url);
+        }
     }
 
     createResource(formValues, resource: string) {
         return this.httpClient.post(this.baseUrl + resource,
+            formValues);
+    }
+
+    updateResource(formValues, id,  resource: string) {
+        return this.httpClient.patch(this.baseUrl + resource + "/" + id,
             formValues);
     }
 }

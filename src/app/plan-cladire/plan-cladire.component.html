@@ -67,7 +67,7 @@
                         <rect x="78%" y="0" width="22%" height="25%" fill-opacity="0" stroke="black" (mouseover)="showTooltip($event, 'Baie femei')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
-                            <path d="M719 0 729 0A90 90 0 0 1 719 15Z" fill-opacity="0" stroke="black"/>
+                            <path d="M719 0 735 0A90 90 0 0 1 719 20Z" fill-opacity="0" stroke="black"/>
                         </g>
                        <!-- WC-->
                         <rect x="86%" y="0" width="7%" height="15%" fill-opacity="0" stroke="black"/>
@@ -91,7 +91,7 @@
                         <rect x="78%" y="25%" width="22%" height="25%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Baie barbati')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
-                            <path d="M719 130 729 130A90 90 0 0 1 719 145Z" fill-opacity="0" stroke="black"/>
+                            <path d="M719 125 735 125A90 90 0 0 1 719 145Z" fill-opacity="0" stroke="black"/>
                         </g>
                         <!-- WC-->
                         <rect x="86%" y="25%" width="7%" height="15%" fill-opacity="0" stroke="black"/>
@@ -115,7 +115,7 @@
                         <rect x="78%" y="50%" width="22%" height="50%" fill-opacity="0" stroke="black"  (mouseover)="showTooltip($event, 'Bucatarie')" (mouseleave)="hideTooltip($event)">
                         </rect>
                         <g transform="translate(100,100)">
-                            <path d="M719 160 729 160A90 90 0 0 1 719 175Z" fill-opacity="0" stroke="black"/>
+                            <path d="M719 160 735 160A90 90 0 0 1 719 180Z" fill-opacity="0" stroke="black"/>
                         </g>
                         <circle cx="88%" cy="65%" r="40" fill-opacity="0" stroke="black"/>
                         <circle cx="83%" cy="60%" r="10" fill-opacity="0" stroke="black"/>
@@ -135,9 +135,10 @@
                         <circle cx="95%" cy="75%" r="10" fill-opacity="0" stroke="black"/>
                         <circle cx="98%" cy="85%" r="10" fill-opacity="0" stroke="black"/>
 
-                        <g parter-component *ngIf="parter.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
-                        <g etaj-1-component *ngIf="etaj1.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
-                        <g etaj-2-component *ngIf="etaj2.checked" [camera]="camera" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+                        <g parter-component *ngIf="parter.checked" [camera]="camera" [officeAngajat]="office" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+                        <g etaj-1-component *ngIf="etaj1.checked" [salaSedinte]="salaSedinte" [camera]="camera" [officeAngajat]="office" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+                        <g etaj-2-component *ngIf="etaj2.checked" [salaSedinte]="salaSedinte" [camera]="camera" [officeAngajat]="office" (showDetails)="showTooltip($event.event, $event.data)" (hideDetails)="hideTooltip($event)"></g>
+
                     </svg>
                     </div>
                 </div>

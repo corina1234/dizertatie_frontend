@@ -12,14 +12,11 @@
                                 <div class="col-md-6">
                                     <label>Sala:</label>
                                 </div>
-                                <div class="col-md-3">
-                                    <p *ngIf="meetingRooms.length == 0">Nici o sala disponibila</p>
-                                    <select *ngIf="meetingRooms.length > 0" matNativeControl name="select1" formControlName="meetingRoom" id="birou">
+                                <div class="col-md-6">
+                                    <select *ngIf="meetingRooms.length > 0" matNativeControl name="select1" formControlName="meetingRoom" id="birou"  (change)="changeSelectedRoom($event.target.value)">
+                                        <option value="0" disabled selected>-- Selecteaza sala --</option>
                                         <option  *ngFor="let meetingRoom of meetingRooms" [value]="meetingRoom._links.self.href" [selected]="">{{meetingRoom.name}}</option>
                                     </select>
-                                </div>
-                                <div class="col-md-3">
-                                   <button type="submit" class="btn btn-outline-warning" (click)="vizualizareMeetingRooms()">Detalii sali sedinta</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -28,7 +25,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="subject">
+                                        <input matInput formControlName="subject" placeholder="text">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -56,8 +53,64 @@
                             </div>
 
                             <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="bookForm.invalid" (click)="salvareRezervare(bookForm.value)">Rezerva</button>
+                            <button mat-raised-button class="btn btn-outline-danger pull-right" [disabled]="bookForm.invalid" (click)="verificaRezervare(bookForm.value)">Disponibilitate</button>
                             <div class="clearfix"></div>
                         </form>
+                    </div>
+                </div>
+
+                <div class="card" *ngIf="disponibilitateSelectata">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Rezervari: {{selectedMeetingRoom?.name}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body table-responsive" *ngIf="bookings.length > 0">
+                            <table class="table table-hover">
+                                <thead class="text-warning">
+                                <th>Angajat</th>
+                                <th>Subiect</th>
+                                <th>Data inceput</th>
+                                <th>Data sfarsit</th>
+                                </thead>
+                                <tbody  *ngFor="let booking of bookings">
+                                <tr>
+                                    <td>{{booking?.employee?.name}}</td>
+                                    <td>{{booking?.subject}}</td>
+                                    <td>{{booking?.bookedFrom | date :'yyyy/MM/dd hh:mm a z'}}</td>
+                                    <td>{{booking?.bookedUntil  | date :'yyyy/MM/dd hh:mm a z'}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-body table-responsive" *ngIf="bookings.length == 0"> Camera e disponibila
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" *ngIf="selectedMeetingRoom">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Sala: {{selectedMeetingRoom?.name}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="typography">
+                            <div class="row">
+                                <div class="col-md-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Cod: </div>
+                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.codeId}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 labelDate"><i class="fa fa-male extra-space"></i> Numar maxim de persoane: </div>
+                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.maxNoPersons}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 labelDate"><i class="fa fa-building-o extra-space"></i> Etaj: </div>
+                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.floor?.name}}</div>
+                            </div>
+                            <div class="row btnHarta">
+                                <button type="submit" class="btn btn-outline-danger pull-right" (click)="vizualizareHarta()"><i class="fa fa-map-marker extra-space"></i> Locatie</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

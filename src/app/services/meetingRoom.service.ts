@@ -13,9 +13,4 @@ export class MeetingRoomService {
         return this.httpClient.get(this.baseUrl + 'meetingRoom/' + 'search/' +
             'findAllByFloor_Id/?floorId=' + floorId);
     }
-
-    getAvailableMeetingRooms(){
-        return this.httpClient.get(this.baseUrl + 'meetingRoom/' + 'search/' +
-            'findAvailableMeetingRooms');
-    }
 }

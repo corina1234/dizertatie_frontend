@@ -13,6 +13,8 @@ export class PlanCladireComponent implements OnInit{
     svg:SafeHtml;
     filtruEtaj;
     camera;
+    salaSedinte;
+    office;
     etajChecked = ["true", "false", "false"];
 
     constructor(private sanitizer: DomSanitizer, private renderer: Renderer2, private route:ActivatedRoute) {
@@ -20,14 +22,11 @@ export class PlanCladireComponent implements OnInit{
 
 
     ngOnInit(): void {
-       // let svgContent = `<svg width="100" height="100" #cerc (mouseover)="test()" >
-       //                  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-       //              </svg>`;
-       //  this.svg = this.sanitizer.bypassSecurityTrustHtml(svgContent);
-
         this.route.paramMap.subscribe((params) => {
             this.filtruEtaj = params.get('nivel');
             this.camera = params.get('camera');
+            this.salaSedinte = params.get('salaSedinte');
+            this.office = params.get('office');
         });
         if(this.filtruEtaj){
             this.mutareEtaj();

@@ -23,6 +23,7 @@
                             <thead class="text-warning">
                             <th>ID</th>
                             <th>Nume</th>
+                            <th>Functie</th>
                             <th>Email</th>
                             <th>Data angajarii</th>
                             </thead>
@@ -30,11 +31,15 @@
                             <tr (click)="vizualizareDetalii(angajat.id)">
                                 <td>{{angajat?.id}}</td>
                                 <td>{{angajat?.name}}</td>
+                                <td>{{angajat?.job?.name}}</td>
                                 <td>{{angajat?.email}}</td>
                                 <td>{{angajat?.dateOfEmployment | date :'dd-MM-yyyy'}}</td>
                             </tr>
                             </tbody>
                         </table>
+                        <ul class="pagination" >
+                            <li [ngClass]="{'active' : i === currentPage}" *ngFor="let key of totalPages;let i = index" class="page-item" id="page-{{i}}"><a class="page-link" (click)="updatePage(i, cautareNumeAngajat.value)">{{i}}</a></li>
+                        </ul>
                     </div>
                     <div class="card-body table-responsive" *ngIf="angajati.length == 0"> Nici un rezultat
                     </div>

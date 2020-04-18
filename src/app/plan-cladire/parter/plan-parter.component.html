@@ -1,22 +1,22 @@
 <svg>
-    <!-- 1. Open Space -->
-    <rect x="0" y="0" width="36%" height="100%" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(officeRooms[0]?.id, camera)" (mouseover)="showTooltip($event, officeRooms[0])" (mouseleave)="hideTooltip($event)"/>
-    <g transform="translate(100,100)">
-        <path d="M278 20 268 20A70 70 0 0 1 278 5Z" fill-opacity="0" stroke="black"/>
-    </g>
 
-    <!-- 2. SR 1 -->
-    <rect x="36%" y="70%" width="21%" height="30%" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(officeRooms[1]?.id, camera)" (mouseover)="showTooltip($event, officeRooms[1])" (mouseleave)="hideTooltip($event)"/>
-    <g transform="translate(100,100)">
-        <path d="M300 250 320 250A90 90 0 0 1 300 260Z" fill-opacity="0" stroke="black"/>
-    </g>
+    <ng-container *ngFor="let officeRoom of officeRooms">
+        <rect [attr.x]="officeRoom?.x" [attr.y]="officeRoom?.y" [attr.width]="officeRoom?.width" [attr.height]="officeRoom?.height" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(officeRoom?.id, camera)" (mouseover)="showTooltip($event, officeRoom)" (mouseleave)="hideTooltip($event)"/>
+        <ng-container *ngFor="let office of officeRoom?.offices">
+            <rect [attr.x]="office.x" [attr.y]="office.y" [attr.width]="office.width"  [attr.height]="office.height" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(office?.id, officeAngajat)" (mouseover)="showTooltipOffice($event, office, officeRoom?.department?.name)" (mouseleave)="hideTooltip($event)"/>
+        </ng-container>
+    </ng-container>
 
-    <!-- 3. SR 2 -->
-    <rect x="57%" y="70%" width="21%" height="30%" fill-opacity="0" stroke="black" [ngStyle]="isOpenSpaceSelectedStyle(officeRooms[2]?.id, camera)" (mouseover)="showTooltip($event, officeRooms[2])" (mouseleave)="hideTooltip($event)"/>
     <g transform="translate(100,100)">
-        <path d="M520 250 540 250A90 90 0 0 1 520 260Z" fill-opacity="0" stroke="black"/>
+        <path d="M278 20 260 20A70 70 0 0 1 278 0Z" fill-opacity="0" stroke="black"/>
     </g>
-
+    <g transform="translate(100,100)">
+        <path d="M515 250 540 250A90 90 0 0 1 515 265Z" fill-opacity="0" stroke="black"/>
+    </g>
+    <!-- Usa intrare cladire-->
+    <g transform="translate(100,100)">
+        <path d="M410 400 370 400A70 70 0 0 1 410 380Z" fill-opacity="0" stroke="black"/>
+    </g>
     <!-- 4. Receptie -->
     <rect x=44% y="37%" width="21%" height="22%" fill-opacity="0" stroke="black" (mouseover)="showTooltipSimple($event, 'Receptie')" (mouseleave)="hideTooltip($event)"/>
 </svg>

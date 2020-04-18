@@ -11,14 +11,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/user-profile', title: 'Cont Personal',  icon:'person', class: '' },
     { path: '/plan-cladire', title: 'Plan Cladire',  icon:'content_paste', class: '' },
-    { path: '/angajati', title: 'Angajati',  icon:'library_books', class: '' },
+    { path: '/angajati', title: 'Angajati',  icon:'person', class: '' },
     { path: '/departamente', title: 'Departamente',  icon:'library_books', class: '' },
-    { path: '/rezervare', title: 'Rezervare camera sedinte',  icon:'location_on', class: '' },
-    // { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    // { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    // { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    // { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/rezervare', title: 'Rezervare camera sedinte',  icon:'location_on', class: '' }
 ];
 
 @Component({
