@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {GeneralService} from "../services/general.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,5 +13,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
   }
+
 
 }

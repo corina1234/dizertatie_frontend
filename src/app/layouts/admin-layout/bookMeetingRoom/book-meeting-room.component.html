@@ -51,6 +51,17 @@
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <div class="row" style="margin-top:20px">
+                                <div class="col-md-6">
+                                    <label>Participanti:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select matNativeControl multiple name="select1" formControlName="participanti">
+                                        <option value="0" disabled selected>-- Selecteaza participanti --</option>
+                                        <option  *ngFor="let employee of employees" [value]="employee.email" [selected]="">{{employee.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="bookForm.invalid" (click)="salvareRezervare(bookForm.value)">Rezerva</button>
                             <button mat-raised-button class="btn btn-outline-danger pull-right" [disabled]="bookForm.invalid" (click)="verificaRezervare(bookForm.value)">Disponibilitate</button>

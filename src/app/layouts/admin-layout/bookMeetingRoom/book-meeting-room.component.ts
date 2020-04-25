@@ -25,9 +25,11 @@ export class BookMeetingRoomComponent implements OnInit {
     private subject: FormControl;
     private bookedFrom: FormControl;
     private bookedUntil: FormControl;
+    private participanti: FormControl;
 
     private disponibilitateSelectata;
     private bookings:any;
+    private employees = [];
 
     constructor(private generalService: GeneralService, private bookingService: BookingService,
                 private angajatService: AngajatService,
@@ -38,17 +40,22 @@ export class BookMeetingRoomComponent implements OnInit {
         this.subject = new FormControl();
         this.bookedFrom = new FormControl('', Validators.required);
         this.bookedUntil = new FormControl('', Validators.required);
+        this.participanti = new FormControl();
         this.bookForm = new FormGroup({
             meetingRoom: this.meetingRoom,
             subject: this.subject,
             bookedFrom: this.bookedFrom,
-            bookedUntil: this.bookedUntil
+            bookedUntil: this.bookedUntil,
+            participanti: this.participanti
         });
 
         this.generalService.getAllResources(this.roomResource).subscribe(data =>
         {
             this.meetingRooms = (<any>data)._embedded.meetingRooms;
         });
+
+        this.generalService.getAllResources("employee","employeeList").subscribe(data =>
+        this.employees = (<any>data)._embedded.employees);
         this.selectedMeetingRoom = null;
         this.disponibilitateSelectata = false;
 
@@ -78,6 +85,9 @@ export class BookMeetingRoomComponent implements OnInit {
                     this.toastr.error('Camera e ocupata!');
                 } else {
                     formValues.meetingRoom = {id: this.selectedMeetingRoom.id};
+                    if(formValues.participanti){
+                        formValues.attendees = formValues.participanti.join(",");
+                    }
                     this.generalService.createResource(formValues, this.resource).subscribe(data => {
                         this.toastr.success('Rezervarea a fost salvata!');
                         this.ngOnInit();

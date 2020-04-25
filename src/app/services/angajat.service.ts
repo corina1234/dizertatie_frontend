@@ -29,4 +29,8 @@ export class AngajatService {
         }
         return this.httpClient.get(url);
     }
+
+    getAllEmployeesDropDown(){
+        return this.httpClient.get(this.baseUrl + 'employee/search/customQuery?projection=employeeDropDown');
+}
 }

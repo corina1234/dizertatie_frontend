@@ -31,9 +31,6 @@ export class GeneralService {
         return this.httpClient.get(url + "?projection=" + projectionName);
     }
 
-    getResourceByUrl(resourceUrl){
-        return this.httpClient.get(resourceUrl);
-    }
 
     getResourceByName(resource, nume, projection?){
         let url = this.baseUrl + resource + '/search/findAllByNameContaining?name=' + nume;
@@ -61,5 +58,9 @@ export class GeneralService {
     updateResource(formValues, id,  resource: string) {
         return this.httpClient.patch(this.baseUrl + resource + "/" + id,
             formValues);
+    }
+
+    test(){
+        return this.baseUrl + 'home';
     }
 }
