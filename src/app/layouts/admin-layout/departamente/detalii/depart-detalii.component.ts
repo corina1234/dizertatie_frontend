@@ -20,7 +20,6 @@ export class DepartDetaliiComponent implements OnInit {
         });
 
         this.departmentService.getDepartmentDetailsById(this.departamentId).subscribe(data => {
-            console.log(data);
             this.departamentDetalii = data;
         }, error => {
             console.log(error);

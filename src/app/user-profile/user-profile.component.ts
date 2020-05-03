@@ -52,8 +52,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateEmployee(employeeForm){
-    this.generalService.updateResource(employeeForm, this.angajatId, "employee").subscribe(() => {
+    this.generalService.updateResource(employeeForm, this.angajatId, "employee").subscribe((data) => {
       this.toastr.success('Datele au fost modificate!');
+      sessionStorage.setItem('username', (<any>data).email)
       this.ngOnInit();
     });
   }

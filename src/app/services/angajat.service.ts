@@ -15,7 +15,7 @@ export class AngajatService {
     }
 
     getAngajatiDepartamentId(departId, i){
-        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByDepartment_Id?id=' + departId + '&page= ' + i + '&projection=employeeList');
+        return this.httpClient.get(this.baseUrl + 'employee/search/findAllByDepartment_Id?id=' + departId + '&page=' + i + '&projection=employeeList');
     }
 
     searchNameAngajatiDepartamentId(departId, name, i){

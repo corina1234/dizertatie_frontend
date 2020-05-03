@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Rezervare sala sedinte</h4>
@@ -9,10 +9,10 @@
                     <div class="card-body">
                         <form [formGroup]="bookForm" autocomplete="off" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <label>Sala:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <select *ngIf="meetingRooms.length > 0" matNativeControl name="select1" formControlName="meetingRoom" id="birou"  (change)="changeSelectedRoom($event.target.value)">
                                         <option value="0" disabled selected>-- Selecteaza sala --</option>
                                         <option  *ngFor="let meetingRoom of meetingRooms" [value]="meetingRoom._links.self.href" [selected]="">{{meetingRoom.name}}</option>
@@ -20,20 +20,20 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <label>Subiect:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="subject" placeholder="text">
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <label>De la:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput type="datetime-local" formControlName="bookedFrom">
                                         <mat-error *ngIf="bookedFrom.invalid">Selecteaza data valida</mat-error>
@@ -41,10 +41,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <label>Pana la:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput type="datetime-local" formControlName="bookedUntil">
                                         <mat-error *ngIf="bookedUntil.invalid">Selecteaza data valida</mat-error>
@@ -52,10 +52,10 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-top:20px">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <label>Participanti:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <select matNativeControl multiple name="select1" formControlName="participanti">
                                         <option value="0" disabled selected>-- Selecteaza participanti --</option>
                                         <option  *ngFor="let employee of employees" [value]="employee.email" [selected]="">{{employee.name}}</option>
@@ -105,18 +105,18 @@
                     <div class="card-body">
                         <div id="typography">
                             <div class="row">
-                                <div class="col-md-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Cod: </div>
-                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.codeId}}
+                                <div class="col-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Cod: </div>
+                                <div class="col-6 labelValori">{{selectedMeetingRoom?.codeId}}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 labelDate"><i class="fa fa-male extra-space"></i> Numar maxim de persoane: </div>
-                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.maxNoPersons}}
+                                <div class="col-6 labelDate"><i class="fa fa-male extra-space"></i> Numar maxim de persoane: </div>
+                                <div class="col-6 labelValori">{{selectedMeetingRoom?.maxNoPersons}}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 labelDate"><i class="fa fa-building-o extra-space"></i> Etaj: </div>
-                                <div class="col-md-6 labelValori">{{selectedMeetingRoom?.floor?.name}}</div>
+                                <div class="col-6 labelDate"><i class="fa fa-building-o extra-space"></i> Etaj: </div>
+                                <div class="col-6 labelValori">{{selectedMeetingRoom?.floor?.name}}</div>
                             </div>
                             <div class="row btnHarta">
                                 <button type="submit" class="btn btn-outline-danger pull-right" (click)="vizualizareHarta()"><i class="fa fa-map-marker extra-space"></i> Locatie</button>

@@ -10,16 +10,19 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DetaliiAngajatComponent implements OnInit {
     angajatDetalii;
     angajatId;
+    departament;
 
     constructor(private angajatService: AngajatService, private route: ActivatedRoute, private router:Router){}
 
     ngOnInit(): void {
         this.route.paramMap.subscribe((params) => {
             this.angajatId = params.get('id');
+            if(params.get('departament')){
+                this.departament = params.get('departament');
+            }
         });
 
         this.angajatService.getAngajatDetailedById(this.angajatId).subscribe(data => {
-            console.log(data);
             this.angajatDetalii = data;
         }, error => {
             console.log(error);

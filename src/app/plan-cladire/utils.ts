@@ -22,74 +22,50 @@ export function mouseLeave($event, renderer, divElement): void {
 }
 
 export function getDataHtml(officeData){
-    return `<div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Nume camera: </div>
-                    <div class="col-md-6">` + officeData.name + `</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Tip camera: </div>
-                    <div class="col-md-6">` + officeData.type +`
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Departament: </div>
-                    <div class="col-md-6">` + officeData.department.name + `(` + officeData.department.code + `)
-                    </div>
+    return `<div class="col-12">
+                    <span style="font-size: 10px">Nume camera</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + officeData.name + `</p>
+                    <span style="font-size: 10px">Tip camera</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + officeData.type +` </p>
+                    <span style="font-size: 10px">Departament</span>
+                    <p style="font-weight: bold;">` + officeData.department.name + `(` + officeData.department.code + `) </p>
                 </div>`;
 }
 
 export function getOfficeInfo(officeData, parentName){
     if(officeData.employee){
-        return `<div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Nume camera: </div>
-                    <div class="col-md-6">` + officeData.name + `</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Departament: </div>
-                    <div class="col-md-6">` + parentName +`
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Angajat: </div>
-                    <div class="col-md-6">` + officeData.employee.name + `
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Functie: </div>
-                    <div class="col-md-6">` + officeData.employee.job.name + `
-                    </div>
+        return `
+                <div class="col-12">
+                    <span style="font-size: 10px">Nume camera</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + officeData.name + `</p>
+                    <span style="font-size: 10px">Departament</span>
+                    <p  style="font-weight: bold; margin-bottom: 2px">` + parentName +`</p>
+                    <span style="font-size: 10px">Angajat</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + officeData.employee.name + `
+                    </p>
+                    <span style="font-size: 10px">Functie</span>
+                    <p style="font-weight: bold">` + officeData.employee.job.name + `</p>
                 </div>`;
     } else {
-        return `<div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Nume camera: </div>
-                    <div class="col-md-6">` + officeData.name + `</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Departament: </div>
-                    <div class="col-md-6">` + parentName +`
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Stare: </div>
-                    <div class="col-md-6">Liber
-                    </div>
+        return `<div class="col-12">
+                    <span style="font-size: 10px">Nume camera</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + officeData.name + `</p>
+                    <span style="font-size: 10px">Departament</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + parentName +`</p>
+                    <span style="font-size: 10px">Stare</span>
+                    <p style="font-weight: bold;">Liber</p>
                 </div>`;
     }
 
 }
 
 export function getDataMeetingRoomHtml(meetingRoom){
-    return `<div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Sala: </div>
-                    <div class="col-md-6">` + meetingRoom.name + `</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" style="font-weight: bold">Cod: </div>
-                    <div class="col-md-6">` + meetingRoom.codeId + `</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8" style="font-weight: bold">Capacitate (pers): </div>
-                    <div class="col-md-4">` + meetingRoom.maxNoPersons + `
-                    </div>
+    return `<div class="col-12">
+                    <span style="font-size: 10px">Sala sedinte</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + meetingRoom.name + `</p>
+                    <span style="font-size: 10px">Cod</span>
+                    <p style="font-weight: bold; margin-bottom: 2px">` + meetingRoom.codeId + `</p>
+                    <span style="font-size: 10px">Capacitate (pers)</span>
+                    <p style="font-weight: bold;">` + meetingRoom.maxNoPersons + ` </p>
                 </div>`;
 }

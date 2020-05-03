@@ -67,7 +67,8 @@ export class BookMeetingRoomComponent implements OnInit {
         if(this.validareFielduri(formValues)){
             let bookedFrom = formValues.bookedFrom.replace("T", "%20");
             let bookedUntil = formValues.bookedUntil.replace("T", "%20");
-            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil, this.selectedMeetingRoom.id).subscribe(data => {
+            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil, this.selectedMeetingRoom.id)
+                .subscribe(data => {
                 this.disponibilitateSelectata = true;
                 this.bookings = data;
 
@@ -80,7 +81,8 @@ export class BookMeetingRoomComponent implements OnInit {
             formValues.employee = {id: this.currentUserId};
             let bookedFrom = formValues.bookedFrom.replace("T", "%20");
             let bookedUntil = formValues.bookedUntil.replace("T", "%20");
-            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil, this.selectedMeetingRoom.id).subscribe(data => {
+            this.bookingService.getBusyBookingFromUntil(bookedFrom, bookedUntil,
+                this.selectedMeetingRoom.id).subscribe(data => {
                 if ((<any>data).length > 0) {
                     this.toastr.error('Camera e ocupata!');
                 } else {
@@ -138,6 +140,7 @@ export class BookMeetingRoomComponent implements OnInit {
     }
 
     changeSelectedRoom(url){
+        this.disponibilitateSelectata = false;
         this.generalService.getResourceByIdAndProjection(url, this.roomProjection).subscribe((data) =>{
            this.selectedMeetingRoom = data;
         });

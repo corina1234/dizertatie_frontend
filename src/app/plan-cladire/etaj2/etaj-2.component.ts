@@ -36,7 +36,6 @@ export class Etaj2Component {
         });
         this.officesRoomService.getOfficesRoomsByFloorId(this.floorId).subscribe((data) => {
             this.officeRooms = (<any>data)._embedded.officesRooms;
-            console.log((<any>data)._embedded.officesRooms)
             this.officeRooms.forEach((office) => {
                 if(office.id == this.camera){
                     let coordinates = office.coordinates.split(",");

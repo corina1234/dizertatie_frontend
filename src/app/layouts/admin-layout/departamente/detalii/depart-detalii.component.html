@@ -9,19 +9,19 @@
         <div class="card-body">
             <div id="typography">
                 <div class="row">
-                    <div class="col-md-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Code: </div>
-                    <div class="col-md-6 labelValori">{{departamentDetalii?.code}}
+                    <div class="col-6 labelDate"><i class="fa fa-asterisk extra-space"></i> Code: </div>
+                    <div class="col-6 labelValori">{{departamentDetalii?.code}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 labelDate"><i class="fa fa-address-card extra-space"></i> Denumire: </div>
-                    <div class="col-md-6 labelValori">{{departamentDetalii?.name}}
+                    <div class="col-6 labelDate"><i class="fa fa-address-card extra-space"></i> Denumire: </div>
+                    <div class="col-6 labelValori">{{departamentDetalii?.name}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 labelDate"><i class="fa fa-male extra-space"></i> Nr angajati: </div>
-                    <div class="col-md-2 labelValori">{{departamentDetalii?.employees?.length}}</div>
-                        <div class="col-md-4 btnAngajati">
+                    <div class="col-6 labelDate"><i class="fa fa-male extra-space"></i> Nr angajati: </div>
+                    <div class="col-2 labelValori">{{departamentDetalii?.employees?.length}}</div>
+                        <div class="col-4 btnAngajati">
                      <button type="submit" class="btn btn-outline-warning" (click)="vizualizareAngajati()">Vizualizare angajati</button>
                     </div>
                 </div>

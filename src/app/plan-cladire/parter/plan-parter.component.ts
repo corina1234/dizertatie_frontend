@@ -23,7 +23,6 @@ export class PlanParterComponent implements OnInit{
     ngOnInit(): void {
         this.officesRoomService.getOfficesRoomsByFloorId(this.floorId).subscribe((data) => {
             this.officeRooms = (<any>data)._embedded.officesRooms;
-            console.log(this.officeRooms)
             this.officeRooms.forEach((office) => {
                 if(office.id == this.camera){
                     let coordinates = office.coordinates.split(",");

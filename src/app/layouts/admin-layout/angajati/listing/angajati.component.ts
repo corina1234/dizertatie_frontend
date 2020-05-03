@@ -25,6 +25,7 @@ export class AngajatiComponent implements OnInit {
         if(this.filtruDepart){
             this.angajatiService.getAngajatiDepartamentId(this.filtruDepart, 0).subscribe(data => {
                 this.angajati = (<any>data)._embedded.employees;
+                this.currentPage = 0;
                 this.totalPages = Array(+(<any>data).page.totalPages).fill(0).map((x, i) => i);
             }, error => {
                 console.log(error);
@@ -32,6 +33,7 @@ export class AngajatiComponent implements OnInit {
         } else {
             this.generalService.getAllResources(this.resourceName, this.projection).subscribe(data => {
                 this.angajati = (<any>data)._embedded.employees;
+                this.currentPage = 0;
                 this.totalPages = Array(+(<any>data).page.totalPages).fill(0).map((x, i) => i);
             }, error => {
                 console.log(error);
@@ -41,7 +43,11 @@ export class AngajatiComponent implements OnInit {
     }
 
     vizualizareDetalii(id){
-        this.router.navigate(['/angajat/' + id]);
+        if(this.filtruDepart){
+            this.router.navigate(['/angajat/' + id + '/departament/' + this.filtruDepart]);
+        } else {
+            this.router.navigate(['/angajat/' + id]);
+        }
     }
 
     searchAngajat(value){

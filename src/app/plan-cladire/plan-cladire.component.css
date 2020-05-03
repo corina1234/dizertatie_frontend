@@ -1,11 +1,10 @@
 .details-amenities {
     display: none;
     position: absolute;
-    font-size: 1em;
     background: linear-gradient(60deg, #ffa726, #fb8c00);
     color: #fff;
     border-radius: 6px;
-    padding: 5px;
+    padding: 3px;
 }
 
 .selectEtaj {
@@ -13,6 +12,6 @@
 }
 
 svg rect:hover  {
-    fill: lightgrey;
-    fill-opacity: 100%;
+    fill: #FFF0F5;
+    fill-opacity: 50%;
 }
