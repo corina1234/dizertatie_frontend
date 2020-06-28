@@ -59,8 +59,4 @@ export class GeneralService {
         return this.httpClient.patch(this.baseUrl + resource + "/" + id,
             formValues);
     }
-
-    test(){
-        return this.baseUrl + 'home';
-    }
 }
